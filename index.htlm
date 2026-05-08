@@ -1,143 +1,533 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AfriServices | Services techniques à domicile</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Burkina Services Connect (BSC) | Landing page qui vend pour vous</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #2E86AB;
-      --secondary: #F18F01;
-      --accent: #C73E1D;
-      --dark: #2B2D42;
-      --light: #F7F7FF;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      background: var(--light);
-      color: var(--dark);
+      font-family: 'Space Grotesk', sans-serif;
+      background: #0a0a0a;
+      color: #e5e5e5;
+      line-height: 1.4;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
-    .hero {
-      position: relative;
-      height: 80vh;
-      background: url('https://images.unsplash.com/photo-1596985851417-dfb52f00d2f2?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    :root {
+      --red: #e52e2e;
+      --red-dark: #b91c1c;
+      --orange: #f97316;
+      --orange-dark: #ea580c;
+      --dark: #0a0a0a;
+      --card: #111111;
+      --border: #222222;
+      --white: #ffffff;
+      --gray: #a3a3a3;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    h1 { 
+      font-size: 2.6rem; 
+      margin-bottom: 1rem; 
+      text-transform: none;
+      line-height: 1.15;
+    }
+    h2 { font-size: 1.8rem; margin-bottom: 1.5rem; text-transform: none; letter-spacing: -0.01em; }
+    h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+
+    /* Boutons modernes et premium */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif;
+      text-align: center;
+      border: none;
+      font-size: 1rem;
+      padding: 14px 24px;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: white;
+      box-shadow: 0 4px 12px rgba(229, 46, 46, 0.3);
+      width: 100%;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(229, 46, 46, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.15);
+      width: 100%;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(37,211,102,0.3);
+    }
+
+    .btn-whatsapp:hover {
+      background: #20b85a;
+      transform: translateY(-2px);
+    }
+
+    /* Animations fluides et rapides */
+    .fade-up, .zoom-in, .slide-left, .slide-right {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .zoom-in { transform: scale(0.96); }
+    .slide-left { transform: translateX(-20px); }
+    .slide-right { transform: translateX(20px); }
+
+    .visible {
+      opacity: 1;
+      transform: translate(0) scale(1);
+    }
+
+    /* Cartes modernes et épurées */
+    .card {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 28px 24px;
+      border: 1px solid var(--border);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(249, 115, 22, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Images naturelles sans effets excessifs */
+    .hero-img, .content-img {
+      width: 100%;
+      border-radius: 24px;
+      margin: 20px 0;
+      display: block;
+      object-fit: cover;
+    }
+
+    .hero-img { height: 280px; }
+    .content-img { height: auto; max-height: 320px; }
+
+    /* Badge urgence */
+    .badge {
+      background: rgba(249, 115, 22, 0.15);
+      color: var(--orange);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1rem;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Sticky CTA épuré */
+    .sticky-cta {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      width: calc(100% - 40px);
+      max-width: 360px;
+      background: var(--red);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 20px;
+      border-radius: 100px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(229,46,46,0.4);
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+
+    .sticky-cta:hover {
+      background: var(--red-dark);
+      transform: translateX(-50%) scale(1.02);
+    }
+
+    /* WhatsApp flottant */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      border-radius: 60px;
+      width: 56px;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      text-align: center;
+      font-size: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+      text-decoration: none;
+      transition: transform 0.2s ease;
     }
 
-    .hero-overlay {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 2rem;
-      border-radius: 12px;
+    .whatsapp-float:hover {
+      transform: scale(1.05);
     }
 
-    .hero-title {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    /* Processus simplifié */
+    .process-step {
+      background: var(--card);
+      border-left: 3px solid var(--orange);
+      padding: 18px 20px;
+      border-radius: 16px;
+      margin-bottom: 12px;
     }
 
-    .hero-subtitle {
-      font-size: 1.3rem;
-      max-width: 700px;
-      margin: auto;
+    .process-step strong {
+      color: var(--orange);
+      display: block;
+      margin-bottom: 6px;
     }
 
-    .services-section {
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 0 1rem;
+    /* FAQ accordéon */
+    details {
+      background: var(--card);
+      border-radius: 16px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
     }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: var(--primary);
+    summary {
+      padding: 18px 20px;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .service-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      transition: transform 0.3s;
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .service-icon {
-      font-size: 2.5rem;
-      color: var(--secondary);
-      margin-bottom: 1rem;
-    }
-
-    .service-title {
+    summary::after {
+      content: '+';
       font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
+      color: var(--orange);
+      transition: transform 0.2s;
+    }
+    details[open] summary::after {
+      content: '−';
+    }
+    .faq-body {
+      padding: 0 20px 20px;
+      color: var(--gray);
+      line-height: 1.5;
+      font-size: 0.9rem;
     }
 
-    .service-description {
-      font-size: 0.95rem;
-      color: #555;
+    /* Prix */
+    .price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--orange);
+      margin: 12px 0;
+    }
+
+    /* Liste offre */
+    .offer-list {
+      list-style: none;
+      margin: 20px 0;
+    }
+    .offer-list li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .offer-list li::before {
+      content: "✓";
+      color: var(--orange);
+      font-weight: bold;
+    }
+
+    /* Témoignages */
+    .testimonial {
+      background: rgba(255,255,255,0.03);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    /* Hero spacing amélioré */
+    .hero-subtext {
+      font-size: 1rem;
+      color: var(--gray);
+      margin: 0 0 1.25rem 0;
+      line-height: 1.5;
+    }
+
+    /* Responsive */
+    @media (max-width: 550px) {
+      .container { padding: 0 16px; }
+      h1 { font-size: 2rem; margin-bottom: 0.75rem; }
+      h2 { font-size: 1.5rem; }
+      .hero-img { height: 220px; }
+      .card { padding: 24px 20px; }
+      .hero-subtext { font-size: 0.95rem; }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    
+    <!-- HERO - HEADLINE AMÉLIORÉE CONVERSION -->
+    <div class="fade-up" style="margin-top: 24px;">
+      <div class="badge">🔥 Pack lancement — 15 places disponibles ce mois-ci</div>
+      <h1>Transformez vos visiteurs Facebook en vrais prospects grâce à une landing page pensée pour vendre.</h1>
+      <p class="hero-subtext">
+        Une page professionnelle qui transforme votre trafic en clients. Conçue pour l'Afrique, mobile-first et orientée résultats concrets.
+      </p>
+      
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Entrepreneur africain utilisant son téléphone" class="hero-img">
+      
+      <div style="display: flex; flex-direction: column; gap: 12px; margin: 16px 0 8px;">
+        <a href="#offre" class="btn btn-primary">🚀 Je veux lancer mon offre</a>
+        <a href="#questceque" class="btn btn-secondary">⬇️ Qu'est-ce qu'une landing page ?</a>
+      </div>
+    </div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-overlay">
-      <h1 class="hero-title">Des techniciens qualifiés, où que vous soyez</h1>
-      <p class="hero-subtitle">
-        Montage de meubles, serrurerie, froid industriel, installations techniques – notre réseau est à votre service
+    <!-- QU'EST-CE QU'UNE LANDING PAGE -->
+    <div class="zoom-in" id="questceque" style="margin: 48px 0;">
+      <div class="card">
+        <h2 style="color: var(--orange);">📄 C'est quoi une landing page ?</h2>
+        <p style="margin-bottom: 16px;">Une page de vente professionnelle conçue pour <strong style="color: var(--red);">une seule mission : transformer un visiteur en client</strong>.</p>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin: 20px 0;">
+          <div>🎯 Pas de distraction, uniquement l'essentiel</div>
+          <div>💬 Un message clair qui pousse à l'action</div>
+          <div>📈 Optimisée pour vendre 24h/24</div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Exemple" class="content-img">
+        <p style="margin-top: 12px; font-weight: 500;">👉 Un vendeur professionnel qui travaille pour vous jour et nuit.</p>
+      </div>
+    </div>
+
+    <!-- PROBLÈME -->
+    <div class="slide-left" id="probleme">
+      <div style="background: #0d0d0d; border-left: 3px solid var(--red); padding: 28px 24px; border-radius: 24px;">
+        <h2 style="color: var(--red);">⛔ Stop aux pertes silencieuses</h2>
+        <ul style="list-style: none; margin: 20px 0;">
+          <li style="margin-bottom: 14px;">❌ Des visiteurs mais pas d'achats</li>
+          <li style="margin-bottom: 14px;">❌ Votre page actuelle ne convainc pas</li>
+          <li style="margin-bottom: 14px;">❌ Vos clients hésitent et disparaissent</li>
+        </ul>
+        <p style="font-weight: 700; font-size: 1.3rem; color: var(--orange);">👉 "Chaque visiteur qui repart = une opportunité perdue"</p>
+        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Frustration" class="content-img" style="margin-top: 20px;">
+      </div>
+    </div>
+
+    <!-- SOLUTION -->
+    <div class="zoom-in" id="solution" style="margin: 48px 0;">
+      <h2>Une page qui convainc à votre place</h2>
+      <div class="card">
+        <p style="font-weight: 600; margin-bottom: 20px;">Votre nouvelle landing page :</p>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div>💰 <strong>Plus d'argent sans plus de trafic</strong> – conversion optimisée</div>
+          <div>📱 <strong>Optimisée mobile</strong> – parfaite sur tous les smartphones</div>
+          <div>⚡ <strong>Texte qui vend</strong> – chaque mot pousse à l'action</div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dashboard" class="content-img">
+      </div>
+    </div>
+
+    <!-- BÉNÉFICES -->
+    <div class="fade-up" id="benefices" style="margin: 48px 0;">
+      <h2>Avantages BSC</h2>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="card" style="display: flex; align-items: center; gap: 16px;">
+          <span style="font-size: 2rem;">📈</span>
+          <span>Vos visiteurs comprennent votre offre du premier coup</span>
+        </div>
+        <div class="card" style="display: flex; align-items: center; gap: 16px;">
+          <span style="font-size: 2rem;">💸</span>
+          <span>Compatible avec vos campagnes Facebook dès le premier jour</span>
+        </div>
+        <img src="https://images.unsplash.com/photo-1553729459-afe8bcdbbbf6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Croissance" class="content-img">
+      </div>
+    </div>
+
+    <!-- PROCESSUS -->
+    <div class="slide-right" id="processus" style="margin: 48px 0;">
+      <h2>⚙️ Comment ça se passe</h2>
+      <div class="process-step"><strong>① Vous nous contactez</strong> Qualification rapide. On vérifie que votre offre est prête.</div>
+      <div class="process-step"><strong>② Diagnostic de votre offre</strong> On analyse votre produit, votre cible et vos avantages.</div>
+      <div class="process-step"><strong>③ On construit votre page</strong> Livrée en 24 à 48h, mobile-first, CTA WhatsApp.</div>
+      <div class="process-step"><strong>④ Accompagnement pub</strong> Stratégie et contenu pour vos premières campagnes.</div>
+    </div>
+
+    <!-- OFFRE -->
+    <div class="zoom-in" id="offre" style="margin: 48px 0;">
+      <h2>🎯 Votre pack lancement</h2>
+      <div class="card" style="border-top: 3px solid var(--orange);">
+        <h3 style="color: var(--orange);">🚀 Pack Lancement Complet</h3>
+        <div class="price">45 000 FCFA</div>
+        <p style="color: var(--gray); font-size: 0.85rem; margin-bottom: 16px;">Prix de lancement — 15 places disponibles</p>
+        
+        <ul class="offer-list">
+          <li>Page de capture professionnelle</li>
+          <li>Diagnostic de votre produit/service</li>
+          <li>3 contenus test pré-lancement</li>
+          <li>Stratégie publicitaire personnalisée</li>
+          <li>Assistance contenu publicitaire</li>
+          <li>3 réajustements gratuits (30 jours)</li>
+          <li>Guide : Publicité Facebook (valeur 1 500 FCFA)</li>
+          <li>Guide : Carte virtuelle pour publicité (valeur 2 000 FCFA)</li>
+          <li>Guide : Maîtriser le closing (valeur 3 000 FCFA)</li>
+        </ul>
+
+        <div style="background: #0a0a0a; border-radius: 16px; padding: 16px; margin: 16px 0;">
+          <p style="color: var(--gray); font-size: 0.8rem;">Les agences facturent ce service <s>150 000 à 300 000 FCFA</s></p>
+          <p style="font-weight: 700;">Valeur totale : <span style="color: var(--orange);">117 000 FCFA</span></p>
+          <p style="font-weight: 700;">→ Vous payez : <span style="color: #25D366;">45 000 FCFA</span></p>
+        </div>
+
+        <a href="https://wa.me/22900000000" target="_blank" class="btn btn-whatsapp" style="width: 100%;">💬 Je réserve ma place</a>
+      </div>
+      <p style="margin-top: 16px; background: #0d0d0d; padding: 12px; border-radius: 100px; text-align: center; font-size: 0.85rem; border: 1px solid var(--border);">
+        🛡️ Ajustements inclus pendant 7 jours après livraison. Satisfaction garantie.
       </p>
     </div>
-  </section>
 
-  <!-- Services -->
-  <section class="services-section">
-    <h2 class="section-title">Services techniques disponibles</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-tools"></i></div>
-        <div class="service-title">Montage de meubles</div>
-        <div class="service-description">Assemblage professionnel de vos meubles à domicile</div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-lock"></i></div>
-        <div class="service-title">Serrurerie</div>
-        <div class="service-description">Ouverture de porte, changement de serrure, sécurité</div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-snowflake"></i></div>
-        <div class="service-title">Chambres froides</div>
-        <div class="service-description">Installation et maintenance de systèmes frigorifiques</div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-plug"></i></div>
-        <div class="service-title">Électricité</div>
-        <div class="service-description">Interventions rapides et conformes aux normes</div>
+    <!-- TÉMOIGNAGES -->
+    <div class="slide-left" id="social-proof" style="margin: 48px 0;">
+      <h2>Ils ont déjà franchi le pas</h2>
+      <div class="card">
+        <div class="testimonial">
+          <p style="font-style: italic;">"Depuis ma page, je reçois uniquement des prospects sérieux. Fini les questions sans suite."</p>
+          <p style="color: var(--orange); margin-top: 8px; font-weight: 600;">— Awa K., textile · Ouagadougou</p>
+        </div>
+        <div class="testimonial">
+          <p style="font-style: italic;">"Le diagnostic m'a aidé à comprendre pourquoi mes clients hésitaient. La page a réglé ça dès le premier jour."</p>
+          <p style="color: var(--orange); margin-top: 8px; font-weight: 600;">— Koffi M., compléments alimentaires</p>
+        </div>
+        <div class="testimonial">
+          <p style="font-style: italic;">"3 demandes sérieuses en moins d'une semaine. Rapport qualité-prix imbattable."</p>
+          <p style="color: var(--orange); margin-top: 8px; font-weight: 600;">— Salif D., entrepreneur digital · Bobo-Dioulasso</p>
+        </div>
+        <p style="margin-top: 16px; color: var(--gray); font-size: 0.8rem; text-align: center;">
+          Accompagnement limité pour garantir la qualité.
+        </p>
       </div>
     </div>
-  </section>
 
+    <!-- FAQ -->
+    <div class="fade-up" id="faq" style="margin: 48px 0;">
+      <h2>❓ Questions fréquentes</h2>
+      <details>
+        <summary>C'est quoi exactement une landing page BSC ?</summary>
+        <div class="faq-body">Une page de vente professionnelle, rapide et hébergée. Elle présente votre offre, répond aux objections et redirige directement vers votre WhatsApp.</div>
+      </details>
+      <details>
+        <summary>Quel est le délai de livraison ?</summary>
+        <div class="faq-body">24 à 48 heures après réception de vos informations et du paiement.</div>
+      </details>
+      <details>
+        <summary>Comment je paie ?</summary>
+        <div class="faq-body">Via Orange Money ou Wave. Simple et immédiat.</div>
+      </details>
+      <details>
+        <summary>Puis-je modifier ma page après livraison ?</summary>
+        <div class="faq-body">Oui. Ajustements mineurs inclus pendant 7 jours. Contactez-nous sur WhatsApp.</div>
+      </details>
+      <details>
+        <summary>Que se passe-t-il après un an ?</summary>
+        <div class="faq-body">Vous recevez un rappel avant expiration. Renouvellement au tarif en vigueur.</div>
+      </details>
+    </div>
+
+    <!-- CTA FINAL -->
+    <div class="zoom-in" id="cta-final" style="margin-bottom: 120px;">
+      <div style="background: linear-gradient(135deg, #b91c1c, #e52e2e); border-radius: 28px; padding: 40px 24px; text-align: center;">
+        <h2 style="color: white; margin-bottom: 16px;">Votre lancement commence ici.</h2>
+        <a href="https://wa.me/22900000000" target="_blank" class="btn" style="background: white; color: black; font-weight: 800; padding: 16px 32px; display: inline-block; width: auto;">Je réserve ma place →</a>
+      </div>
+    </div>
+  </div>
+
+  <a href="#offre" class="sticky-cta">🔥 Réserver ma place — 45 000 FCFA</a>
+  <a href="https://wa.me/22900000000" class="whatsapp-float" target="_blank">💬</a>
+
+  <script>
+    (function() {
+      // Observer pour animations (optimisé)
+      const animatedElements = document.querySelectorAll('.fade-up, .zoom-in, .slide-left, .slide-right');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Une seule fois
+          }
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
+      
+      animatedElements.forEach(el => observer.observe(el));
+
+      // Smooth scroll amélioré sans lag
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId !== '#') {
+            const target = document.querySelector(targetId);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
-  
+```
